@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="demo">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>demo</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    function downloadLocalStorage() {
+      // Retrieve the data from localStorage using the same key
+      const dataString = localStorage.getItem('KEY'); // Get the stringified data
+      
+      // Check if the data exists and parse it into a JavaScript object
+      if (dataString) {
+        try {
+          const data = JSON.parse(dataString); // Convert the string back to a JavaScript object (array of objects)
+  
+          // Create a Blob from the parsed data (convert it to a JSON string format)
+          const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  
+          // Create a link element for downloading
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'localStorageData.json'; // Name of the file to download
+  
+          // Trigger the download
+          link.click();
+        } catch (e) {
+          console.error('Error parsing JSON data from localStorage:', e);
+        }
+      } else {
+        console.error('No data found in localStorage.');
+      }
+    }
+  </script>
+  
+  
+</body>
+</html>
